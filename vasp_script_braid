@@ -1,0 +1,20 @@
+#!/bin/bash
+#PBS -N NaMnFeV-01-r1
+#PBS -l nodes=1:ppn=12
+#PBS -l walltime=100:00:00
+#PBS -V
+#PBS -M vincentwu@ucsb.edu
+#PBS -m be
+
+cd $PBS_O_WORKDIR
+
+#   unlimit the stack size
+ulimit -s unlimited
+
+#   What node are we running on?
+hostname
+
+#   Load the relevant modules
+module load intel/18
+
+mpirun -np 12  /home/pcw/bin/vasp.5.4.4.ncl > vasp-job.out
